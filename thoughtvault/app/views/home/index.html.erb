@@ -1,8 +1,8 @@
-<% content_for :title, "ThoughtVault — Collect Wisdom" %>
+<% content_for :title, "MyQuote — Collect Wisdom" %>
 
 <!-- Hero banner — teal/green theme, different layout from friend's project -->
 <div class="p-4 mb-4 bg-success bg-opacity-10 rounded-3 border border-success">
-  <h1 class="display-5 fw-bold text-success">Welcome to ThoughtVault</h1>
+  <h1 class="display-5 fw-bold text-success">Welcome to MyQuote</h1>
   <p class="fs-5 text-muted">Discover and collect timeless wisdom from great thinkers throughout history.</p>
   <% unless logged_in? %>
     <%= link_to "Create a Free Account", new_user_path, class: "btn btn-success me-2" %>

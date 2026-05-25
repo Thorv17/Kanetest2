@@ -1,6 +1,6 @@
-# CSI2441 Assignment 2 - ThoughtVault
+# CSI2441 Assignment 2 - MyQuote
 # Student: Vinith Magheswaran (ID: 10676287)
-# Route definitions for the ThoughtVault Rails application
+# Route definitions for the MyQuote Rails application
 
 Rails.application.routes.draw do
   # Public landing page showing 10 most recent public quotes

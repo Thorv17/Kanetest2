@@ -1,4 +1,4 @@
-# CSI2441 Assignment 2 - ThoughtVault
+# CSI2441 Assignment 2 - MyQuote
 # Student: Vinith Magheswaran (ID: 10676287)
 # Database seed file - Idempotent seed data for development and testing
 # Safe to re-run multiple times; uses find_or_create_by to prevent duplicates

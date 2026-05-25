@@ -1,4 +1,4 @@
-# CSI2441 Assignment 2 - ThoughtVault
+# CSI2441 Assignment 2 - MyQuote
 # Student: Vinith Magheswaran (ID: 10676287)
 # User model - represents application users with role-based access and authentication
 

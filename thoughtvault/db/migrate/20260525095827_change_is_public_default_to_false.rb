@@ -1,4 +1,4 @@
-# CSI2441 Assignment 2 - ThoughtVault
+# CSI2441 Assignment 2 - MyQuote
 # Student: Vinith Magheswaran (ID: 10676287)
 # Migration: Change is_public default from true to false
 # Quotes should be private by default; user explicitly opts in to make them public

@@ -1,4 +1,4 @@
-# CSI2441 Assignment 2 - ThoughtVault
+# CSI2441 Assignment 2 - MyQuote
 # Student: Vinith Magheswaran (ID: 10676287)
 # QuotesController - CRUD operations for quotes with role-based access control
 
@@ -44,7 +44,7 @@ class QuotesController < ApplicationController
     @quote = Quote.new(quote_params)
 
     if @quote.save
-      redirect_to @quote, notice: "Your quote has been saved to ThoughtVault!"
+      redirect_to @quote, notice: "Your quote has been saved to MyQuote!"
     else
       # Rebuild form slots on validation failure
       pad_quote_tags

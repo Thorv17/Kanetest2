@@ -1,4 +1,4 @@
-# CSI2441 Assignment 2 - ThoughtVault
+# CSI2441 Assignment 2 - MyQuote
 # Student: Vinith Magheswaran (ID: 10676287)
 # AuthorsController - CRUD for philosophers/thinkers; accessible to all authenticated users
 
@@ -24,7 +24,7 @@ class AuthorsController < ApplicationController
     @author = Author.new(author_params)
 
     if @author.save
-      redirect_to @author, notice: "Thinker added to ThoughtVault."
+      redirect_to @author, notice: "Thinker added to MyQuote."
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class AuthorsController < ApplicationController
 
   def destroy
     @author.destroy!
-    redirect_to authors_path, notice: "Thinker removed from ThoughtVault.", status: :see_other
+    redirect_to authors_path, notice: "Thinker removed from MyQuote.", status: :see_other
   end
 
   private
