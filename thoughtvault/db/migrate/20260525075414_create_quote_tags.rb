@@ -2,9 +2,9 @@
 # Student: Vinith Magheswaran (ID: 10676287)
 # Migration: Create quote_categories join table for many-to-many relationship between quotes and categories
 
-class CreateQuoteCategorys < ActiveRecord::Migration[8.1]
+class CreateQuoteTags < ActiveRecord::Migration[8.1]
   def change
-    create_table :quote_categories do |t|
+    create_table :quote_tags do |t|
       # Foreign key to quotes table: the quote being tagged (required)
       t.references :quote, null: false, foreign_key: true
 
