@@ -1,9 +1,9 @@
 # CSI2441 Assignment 2 - MyQuote
 # Student: Vinith Magheswaran (ID: 10676287)
-# QuoteTag model - join table linking quotes to categories for many-to-many relationship
+# QuoteCategory model - join table linking quotes to categories for many-to-many relationship
 
-class QuoteTag < ApplicationRecord
-  # Each quote_tag belongs to exactly one quote and one category
+class QuoteCategory < ApplicationRecord
+  # Each quote_category belongs to exactly one quote and one category
   belongs_to :quote
   belongs_to :category, optional: true
 

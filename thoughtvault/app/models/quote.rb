@@ -8,12 +8,12 @@ class Quote < ApplicationRecord
   # optional: true disables Rails auto-validation; we handle it with validates :author below
   belongs_to :author, optional: true
 
-  # Quotes are tagged with categories via the QuoteTag join table
-  has_many :quote_tags, dependent: :destroy
-  has_many :categories, through: :quote_tags
+  # Quotes are tagged with categories via the QuoteCategory join table
+  has_many :quote_categories, dependent: :destroy
+  has_many :categories, through: :quote_categories
 
   # Accepts nested attributes for inline category assignment during quote creation/editing
-  accepts_nested_attributes_for :quote_tags, allow_destroy: true
+  accepts_nested_attributes_for :quote_categories, allow_destroy: true
 
   # Validation: quote content must not be empty
   validates :content, presence: { message: "cannot be blank" }
@@ -28,7 +28,7 @@ class Quote < ApplicationRecord
 
   # Ensures user selects at least one category for the quote
   def requires_at_least_one_category
-    active_tags = quote_tags.reject(&:marked_for_destruction?)
+    active_tags = quote_categories.reject(&:marked_for_destruction?)
     errors.add(:base, "At least one category must be selected.") if active_tags.empty?
   end
 end

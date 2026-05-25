@@ -51,11 +51,11 @@
     </div>
   </div>
 
-  <%# Category tag slots — always 4 rows, using quote_tags (vs friend's quote_categories) %>
+  <%# Category tag slots — always 4 rows, using quote_categories (vs friend's quote_categories) %>
   <label class="form-label fw-semibold">Categories <span class="text-danger">*</span></label>
   <div id="category-slots">
-    <% @quote.quote_tags.each do |tag| %>
-      <%= f.fields_for :quote_tags, tag do |tf| %>
+    <% @quote.quote_categories.each do |tag| %>
+      <%= f.fields_for :quote_categories, tag do |tf| %>
         <div class="category-slot row mb-2">
           <div class="col-auto">
             <%= tf.select :category_id,

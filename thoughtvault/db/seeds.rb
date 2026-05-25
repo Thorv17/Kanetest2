@@ -125,7 +125,7 @@ sample_quotes.each do |sq|
     user:      sq[:user]
   )
   sq[:categories].compact.each do |cat|
-    quote.quote_tags.build(category: cat)
+    quote.quote_categories.build(category: cat)
   end
   quote.save!
   puts "  Quote: #{sq[:content].truncate(60)}"

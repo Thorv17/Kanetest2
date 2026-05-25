@@ -9,7 +9,7 @@ class SearchController < ApplicationController
 
     if @query.present?
       # Search public quotes by category name, author first name, or author last name
-      @results = Quote.joins(:quote_tags, :categories)
+      @results = Quote.joins(:quote_categories, :categories)
                       .joins(:author)
                       .where(is_public: true)
                       .where(

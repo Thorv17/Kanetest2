@@ -46,7 +46,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # Admin only: delete a category (cascades to remove quote_tags)
+  # Admin only: delete a category (cascades to remove quote_categories)
   def destroy
     @category.destroy!
     redirect_to categories_path, notice: "Category removed.", status: :see_other

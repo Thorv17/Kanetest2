@@ -30,7 +30,7 @@
   <% end %>
 
   <%# Categories listed as badges — different visual treatment from friend's bullet list %>
-  <% if quote.quote_tags.loaded? ? quote.quote_tags.any? : quote.categories.any? %>
+  <% if quote.quote_categories.loaded? ? quote.quote_categories.any? : quote.categories.any? %>
     <p class="mb-1">
       <strong>Categories:</strong>
       <% quote.categories.each do |cat| %>

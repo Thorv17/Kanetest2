@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_25_095827) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_25_114242) do
   create_table "authors", force: :cascade do |t|
     t.text "bio"
     t.string "birth_yr"
@@ -28,13 +28,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_095827) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
-  create_table "quote_tags", force: :cascade do |t|
+  create_table "quote_categories", force: :cascade do |t|
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.integer "quote_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_quote_tags_on_category_id"
-    t.index ["quote_id"], name: "index_quote_tags_on_quote_id"
+    t.index ["category_id"], name: "index_quote_categories_on_category_id"
+    t.index ["quote_id"], name: "index_quote_categories_on_quote_id"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -62,8 +62,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_095827) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "quote_tags", "categories"
-  add_foreign_key "quote_tags", "quotes"
+  add_foreign_key "quote_categories", "categories"
+  add_foreign_key "quote_categories", "quotes"
   add_foreign_key "quotes", "authors"
   add_foreign_key "quotes", "users"
 end

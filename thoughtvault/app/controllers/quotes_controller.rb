@@ -30,13 +30,13 @@ class QuotesController < ApplicationController
     end
     @quote = Quote.new
     # Pre-build 4 category tag slots for the form UI
-    4.times { @quote.quote_tags.build }
+    4.times { @quote.quote_categories.build }
   end
 
   # Form for editing an existing quote; ensure form always shows 4 category slots
   def edit
-    existing = @quote.quote_tags.size
-    (4 - existing).times { @quote.quote_tags.build } if existing < 4
+    existing = @quote.quote_categories.size
+    (4 - existing).times { @quote.quote_categories.build } if existing < 4
   end
 
   # Save new quote to database
@@ -47,7 +47,7 @@ class QuotesController < ApplicationController
       redirect_to @quote, notice: "Your quote has been saved to MyQuote!"
     else
       # Rebuild form slots on validation failure
-      pad_quote_tags
+      pad_quote_categories
       render :new, status: :unprocessable_entity
     end
   end
@@ -57,7 +57,7 @@ class QuotesController < ApplicationController
     if @quote.update(quote_params)
       redirect_to @quote, notice: "Quote updated successfully."
     else
-      pad_quote_tags
+      pad_quote_categories
       render :edit, status: :unprocessable_entity
     end
   end
@@ -75,11 +75,11 @@ class QuotesController < ApplicationController
     @quote = Quote.find(params[:id])
   end
 
-  # Permitted parameters for quote creation/update, including nested quote_tags
+  # Permitted parameters for quote creation/update, including nested quote_categories
   def quote_params
     params.require(:quote).permit(
       :content, :pub_year, :note, :is_public, :user_id, :author_id,
-      quote_tags_attributes: %i[id category_id _destroy]
+      quote_categories_attributes: %i[id category_id _destroy]
     )
   end
 
@@ -92,8 +92,8 @@ class QuotesController < ApplicationController
   end
 
   # Helper to ensure form displays exactly 4 category-tag input rows
-  def pad_quote_tags
-    existing = @quote.quote_tags.reject(&:marked_for_destruction?).size
-    (4 - existing).times { @quote.quote_tags.build } if existing < 4
+  def pad_quote_categories
+    existing = @quote.quote_categories.reject(&:marked_for_destruction?).size
+    (4 - existing).times { @quote.quote_categories.build } if existing < 4
   end
 end
