@@ -1,7 +1,12 @@
+# CSI2441 Assignment 2 - ThoughtVault
+# Student: Vinith Magheswaran (ID: 10676287)
+# HomeController - Landing pages, user dashboard, admin dashboard, and quote collection
+
 class HomeController < ApplicationController
+  # Public homepage does not require authentication; dashboards do
   before_action :require_login, only: %i[uindex aindex uquotes]
 
-  # Public landing page — shows 10 most recent public quotes
+  # Public landing page — shows 10 most recent public quotes (visible to all visitors)
   def index
     @recent_quotes = Quote.includes(:author)
                           .where(is_public: true)
@@ -9,12 +14,12 @@ class HomeController < ApplicationController
                           .limit(10)
   end
 
-  # Standard user dashboard
+  # Standard user dashboard — redirects admin users to their own dashboard
   def uindex
     redirect_to admin_path if admin_user?
   end
 
-  # Admin dashboard
+  # Admin dashboard — restricted to admin users only
   def aindex
     unless admin_user?
       flash[:alert] = "Access restricted to administrators."
@@ -22,7 +27,7 @@ class HomeController < ApplicationController
     end
   end
 
-  # Logged-in user's own quote collection
+  # Logged-in user's own complete quote collection (public and private quotes)
   def uquotes
     @my_quotes = Quote.includes(:author, :categories)
                       .where(user_id: current_user.id)

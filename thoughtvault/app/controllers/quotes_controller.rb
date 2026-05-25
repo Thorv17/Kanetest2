@@ -6,7 +6,8 @@ class QuotesController < ApplicationController
   before_action :require_login
   before_action :set_quote, only: %i[show edit update destroy]
   before_action :check_visibility, only: %i[show]
-  before_action :verify_ownership, only: %i[edit update destroy]
+  # Explicitly pass @quote so verify_ownership checks quote.user_id not @user (which is nil here)
+  before_action -> { verify_ownership(@quote) }, only: %i[edit update destroy]
 
   # List quotes: admins see all public quotes; standard users see their own quotes
   def index

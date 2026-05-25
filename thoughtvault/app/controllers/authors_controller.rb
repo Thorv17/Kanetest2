@@ -1,3 +1,7 @@
+# CSI2441 Assignment 2 - ThoughtVault
+# Student: Vinith Magheswaran (ID: 10676287)
+# AuthorsController - CRUD for philosophers/thinkers; accessible to all authenticated users
+
 class AuthorsController < ApplicationController
   before_action :require_login
   before_action :set_author, only: %i[show edit update destroy]

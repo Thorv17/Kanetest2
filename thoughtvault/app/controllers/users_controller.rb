@@ -1,3 +1,7 @@
+# CSI2441 Assignment 2 - ThoughtVault
+# Student: Vinith Magheswaran (ID: 10676287)
+# UsersController - User registration, profile management, and admin user management
+
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :require_login, only: %i[show edit update destroy index]
