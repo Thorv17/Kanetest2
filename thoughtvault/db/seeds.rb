@@ -1,8 +1,11 @@
-# ThoughtVault seed data — idempotent, safe to re-run
-# Loads the two mandatory test accounts and the standard philosophical categories.
+# CSI2441 Assignment 2 - ThoughtVault
+# Student: Vinith Magheswaran (ID: 10676287)
+# Database seed file - Idempotent seed data for development and testing
+# Safe to re-run multiple times; uses find_or_create_by to prevent duplicates
 
 puts "== Seeding categories =="
 
+# Seven philosophical categories required by assignment specification
 category_names = [
   "Metaphysics",
   "Axiology",
@@ -21,6 +24,7 @@ end
 puts "== Seeding mandatory test users =="
 
 # Administrator account (required by assignment brief)
+# Email: admin@myquotes.com | Password: admin123
 admin = User.find_or_initialize_by(email: "admin@myquotes.com")
 admin.fname    = "John"
 admin.lname    = "Jones"
@@ -31,6 +35,7 @@ admin.save!
 puts "  Admin: #{admin.email}"
 
 # Standard user account (required by assignment brief)
+# Email: vinceb@myemail.com | Password: vince123
 standard = User.find_or_initialize_by(email: "vinceb@myemail.com")
 standard.fname    = "Vincent"
 standard.lname    = "Brown"
@@ -42,6 +47,7 @@ puts "  User:  #{standard.email}"
 
 puts "== Seeding sample thinkers =="
 
+# Sample philosophers/authors for demonstration quotes
 thinkers = [
   { fname: "Aristotle",  lname: "",        birth_yr: "384 BCE", death_yr: "322 BCE",
     bio: "Ancient Greek philosopher and polymath, student of Plato." },
@@ -64,6 +70,7 @@ end
 
 puts "== Seeding sample public quotes =="
 
+# Fetch references to seed data for quote creation
 aristotle  = Author.find_by(fname: "Aristotle")
 kant       = Author.find_by(fname: "Immanuel")
 aurelius   = Author.find_by(fname: "Marcus")
@@ -71,6 +78,7 @@ ethics_cat = Category.find_by(name: "Ethics")
 logic_cat  = Category.find_by(name: "Logic")
 meta_cat   = Category.find_by(name: "Metaphysics")
 
+# Sample public quotes with categories for homepage display
 sample_quotes = [
   {
     content:   "The whole is more than the sum of its parts.",
@@ -103,11 +111,11 @@ sample_quotes = [
 
 sample_quotes.each do |sq|
   next if sq[:author].nil?
-  # Check if the quote already exists
+  # Skip if quote already exists for this user
   existing = Quote.find_by(content: sq[:content], user: sq[:user])
   next if existing
 
-  # Build tags inline so the validation passes on initial save
+  # Build quote with tags inline so validation passes (requires at least one category)
   quote = Quote.new(
     content:   sq[:content],
     pub_year:  sq[:pub_year],

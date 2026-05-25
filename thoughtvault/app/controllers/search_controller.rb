@@ -1,9 +1,14 @@
+# CSI2441 Assignment 2 - ThoughtVault
+# Student: Vinith Magheswaran (ID: 10676287)
+# SearchController - Public search for quotes by category name or author name (no authentication required)
+
 class SearchController < ApplicationController
-  # Allows visitors to search public quotes by category name or author name
+  # Public search endpoint accessible to all visitors (authenticated or not)
   def index
     @query = params[:query].to_s.strip
 
     if @query.present?
+      # Search public quotes by category name, author first name, or author last name
       @results = Quote.joins(:quote_tags, :categories)
                       .joins(:author)
                       .where(is_public: true)

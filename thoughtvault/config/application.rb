@@ -1,3 +1,7 @@
+# CSI2441 Assignment 2 - ThoughtVault
+# Student: Vinith Magheswaran (ID: 10676287)
+# Rails application initialization and configuration
+
 require_relative "boot"
 
 require "rails/all"

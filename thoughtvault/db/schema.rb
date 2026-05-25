@@ -41,7 +41,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_25_075414) do
     t.integer "author_id", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
-    t.boolean "is_public", default: true, null: false
+    t.boolean "is_public", default: false, null: false
     t.text "note"
     t.string "pub_year"
     t.datetime "updated_at", null: false
