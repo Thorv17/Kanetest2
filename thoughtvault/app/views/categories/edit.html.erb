@@ -1,0 +1,11 @@
+<% content_for :title, "Edit Category — ThoughtVault" %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>&#9998; Edit Category</h2>
+  <%= link_to "&larr; Cancel".html_safe, categories_path, class: "btn btn-outline-secondary btn-sm" %>
+</div>
+<div class="card border-0 shadow-sm" style="max-width:450px;">
+  <div class="card-body p-4">
+    <%= render "form", category: @category, btn_label: "Update Category" %>
+  </div>
+</div>

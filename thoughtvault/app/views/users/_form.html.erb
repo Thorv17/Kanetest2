@@ -1,0 +1,71 @@
+<%# Shared form used for both sign-up (new) and editing account details %>
+<%= form_with(model: user) do |form| %>
+
+  <%# Show validation errors if any %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>Please fix the following:</strong>
+      <ul class="mb-0 mt-1">
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">First Name</label>
+    <%# Read-only when an admin edits ANOTHER user's account %>
+    <%= form.text_field :fname, class: "form-control",
+        placeholder: "First name",
+        readonly: (logged_in? && admin_user? && user.id != current_user.id) %>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Last Name</label>
+    <%= form.text_field :lname, class: "form-control",
+        placeholder: "Last name",
+        readonly: (logged_in? && admin_user? && user.id != current_user.id) %>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Email Address</label>
+    <%= form.email_field :email, class: "form-control",
+        placeholder: "email@example.com",
+        readonly: (logged_in? && admin_user? && user.id != current_user.id) %>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Password</label>
+    <%= form.password_field :password, class: "form-control",
+        placeholder: user.persisted? ? "Leave blank to keep current password" : "Choose a password (min 6 chars)",
+        readonly: (logged_in? && admin_user? && user.id != current_user.id) %>
+  </div>
+
+  <%# Admin-only: toggle admin role %>
+  <% if logged_in? && admin_user? %>
+    <div class="mb-3 form-check">
+      <%= form.check_box :is_admin, class: "form-check-input" %>
+      <%= form.label :is_admin, "Grant Administrator Role", class: "form-check-label" %>
+    </div>
+  <% else %>
+    <%= form.hidden_field :is_admin, value: false %>
+  <% end %>
+
+  <%# Admin-only: set account status; new users default to Active %>
+  <div class="mb-3">
+    <% if logged_in? && admin_user? %>
+      <label class="form-label fw-semibold">Account Status</label>
+      <%= form.select :status, %w[Active Suspended Banned], {}, class: "form-select" %>
+    <% elsif logged_in? %>
+      <%= form.hidden_field :status %>
+    <% else %>
+      <%= form.hidden_field :status, value: "Active" %>
+    <% end %>
+  </div>
+
+  <div class="d-grid">
+    <%= form.submit(local_assigns[:submit_label] || (logged_in? ? "Save Changes" : "Create My Account"),
+                    class: "btn btn-success btn-lg") %>
+  </div>
+<% end %>

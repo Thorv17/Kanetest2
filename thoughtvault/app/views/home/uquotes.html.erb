@@ -1,0 +1,40 @@
+<% content_for :title, "My Quotes — ThoughtVault" %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>&#128204; My Quote Collection</h2>
+  <%= link_to "&#43; Add New Quote".html_safe, new_quote_path, class: "btn btn-success" %>
+</div>
+
+<% if @my_quotes.empty? %>
+  <div class="text-center py-5">
+    <p class="text-muted fs-5">You haven&rsquo;t saved any quotes yet.</p>
+    <%= link_to "Start building your collection", new_quote_path, class: "btn btn-outline-success" %>
+  </div>
+<% else %>
+  <% @my_quotes.each do |quote| %>
+    <article class="card border-0 shadow-sm mb-3">
+      <div class="card-body">
+        <blockquote class="blockquote mb-1">
+          <p class="fst-italic">&ldquo;<%= quote.content %>&rdquo;</p>
+          <footer class="blockquote-footer">
+            <% if quote.author.present? %>
+              <%= quote.author.fname %> <%= quote.author.lname %>
+            <% else %>
+              Unknown Author
+            <% end %>
+          </footer>
+        </blockquote>
+        <div class="mt-2 d-flex gap-2 align-items-center">
+          <!-- Visibility badge shows public/private status -->
+          <% if quote.is_public? %>
+            <span class="badge bg-success">Public</span>
+          <% else %>
+            <span class="badge bg-secondary">Private</span>
+          <% end %>
+          <%= link_to "View", quote_path(quote), class: "btn btn-sm btn-outline-success" %>
+          <%= link_to "Edit", edit_quote_path(quote), class: "btn btn-sm btn-outline-secondary" %>
+        </div>
+      </div>
+    </article>
+  <% end %>
+<% end %>

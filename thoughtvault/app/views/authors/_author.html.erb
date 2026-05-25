@@ -1,0 +1,12 @@
+<div id="<%= dom_id author %>">
+  <p><strong>Name:</strong> <%= author.fname %> <%= author.lname %></p>
+  <% if author.birth_yr.present? %>
+    <p>
+      <strong>Lifespan:</strong>
+      <%= author.birth_yr %>&ndash;<%= author.death_yr.present? ? author.death_yr : "present" %>
+    </p>
+  <% end %>
+  <% if author.bio.present? %>
+    <p><strong>Biography:</strong> <%= author.bio %></p>
+  <% end %>
+</div>

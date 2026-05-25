@@ -1,0 +1,33 @@
+<% content_for :title, "Sign In — ThoughtVault" %>
+
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card shadow-sm border-0 mt-4">
+      <div class="card-header bg-success text-white text-center py-3">
+        <h4 class="mb-0">&#128218; Sign In to ThoughtVault</h4>
+      </div>
+      <div class="card-body p-4">
+
+        <%= form_tag login_path, method: :post do %>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email Address</label>
+            <%= email_field_tag :email, nil, class: "form-control", placeholder: "you@example.com", required: true %>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Password</label>
+            <%= password_field_tag :password, nil, class: "form-control", placeholder: "Your password", required: true %>
+          </div>
+          <div class="d-grid">
+            <%= submit_tag "Sign In", class: "btn btn-success btn-lg" %>
+          </div>
+        <% end %>
+
+        <hr>
+        <p class="text-center text-muted mb-0">
+          Don&rsquo;t have an account?
+          <%= link_to "Sign up for free", new_user_path, class: "text-success fw-semibold" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

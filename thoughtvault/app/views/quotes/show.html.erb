@@ -1,0 +1,22 @@
+<% content_for :title, "Quote Details — ThoughtVault" %>
+
+<div class="card border-0 shadow-sm mt-3">
+  <div class="card-header bg-success bg-opacity-10 border-bottom border-success py-3">
+    <h4 class="mb-0 text-success">&#128218; Quote Details</h4>
+  </div>
+  <div class="card-body p-4">
+    <%= render @quote %>
+
+    <hr>
+    <div class="d-flex gap-2 flex-wrap">
+      <%# Only the quote owner (or admin) can edit/delete %>
+      <% if logged_in? && (@quote.user_id == current_user.id || admin_user?) %>
+        <%= link_to "&#9998; Edit".html_safe, edit_quote_path(@quote), class: "btn btn-outline-secondary" %>
+        <%= button_to "&#128465; Delete".html_safe, @quote, method: :delete,
+            class: "btn btn-danger",
+            data: { turbo_confirm: "Delete this quote permanently?" } %>
+      <% end %>
+      <%= link_to "&larr; Back".html_safe, my_quotes_path, class: "btn btn-outline-success" %>
+    </div>
+  </div>
+</div>

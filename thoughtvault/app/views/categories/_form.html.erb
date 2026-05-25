@@ -1,0 +1,23 @@
+<%= form_with(model: category) do |form| %>
+
+  <% if category.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>Please fix the following:</strong>
+      <ul class="mb-0 mt-1">
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Category Name <span class="text-danger">*</span></label>
+    <%= form.text_field :name, class: "form-control",
+        placeholder: "e.g. Ethics, Metaphysics, Logic..." %>
+  </div>
+
+  <div class="d-grid">
+    <%= form.submit local_assigns[:btn_label] || "Save Category", class: "btn btn-success btn-lg" %>
+  </div>
+<% end %>

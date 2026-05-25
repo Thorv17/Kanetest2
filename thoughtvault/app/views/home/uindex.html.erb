@@ -1,0 +1,39 @@
+<% content_for :title, "My Dashboard — ThoughtVault" %>
+
+<div class="row align-items-center mb-4">
+  <div class="col">
+    <h2>Hello, <span class="text-success"><%= session[:fname] %></span>!</h2>
+    <p class="text-muted">Welcome to your ThoughtVault dashboard.</p>
+  </div>
+</div>
+
+<div class="row g-3">
+  <!-- Quick action cards -->
+  <div class="col-md-4">
+    <div class="card h-100 border-success">
+      <div class="card-body text-center">
+        <h5 class="card-title">&#128204; My Quotes</h5>
+        <p class="card-text text-muted">View and manage all quotes in your collection.</p>
+        <%= link_to "Go to My Quotes", my_quotes_path, class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 border-success">
+      <div class="card-body text-center">
+        <h5 class="card-title">&#43; Add a Quote</h5>
+        <p class="card-text text-muted">Save a new piece of wisdom to your vault.</p>
+        <%= link_to "Add New Quote", new_quote_path, class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 border-success">
+      <div class="card-body text-center">
+        <h5 class="card-title">&#9998; Account Settings</h5>
+        <p class="card-text text-muted">Update your personal details and password.</p>
+        <%= link_to "Edit My Account", edit_user_path(session[:user_id]), class: "btn btn-outline-success" %>
+      </div>
+    </div>
+  </div>
+</div>

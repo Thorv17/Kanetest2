@@ -1,0 +1,15 @@
+<%# Partial used in users/show %>
+<div id="<%= dom_id user %>">
+  <p><strong>First Name:</strong> <%= user.fname %></p>
+  <p><strong>Last Name:</strong>  <%= user.lname %></p>
+  <p><strong>Email:</strong>      <%= user.email %></p>
+  <p>
+    <strong>Role:</strong>
+    <%= user.is_admin? ? "Administrator" : "Standard User" %>
+  </p>
+  <p>
+    <strong>Account Status:</strong>
+    <% badge = user.status == "Active" ? "bg-success" : (user.status == "Suspended" ? "bg-warning text-dark" : "bg-danger") %>
+    <span class="badge <%= badge %>"><%= user.status %></span>
+  </p>
+</div>

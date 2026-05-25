@@ -1,0 +1,38 @@
+<% content_for :title, "Admin Dashboard — ThoughtVault" %>
+
+<div class="row align-items-center mb-4">
+  <div class="col">
+    <h2>&#128737; Administrator Dashboard</h2>
+    <p class="text-muted">Welcome back, <strong><%= session[:fname] %></strong>. Manage the ThoughtVault platform below.</p>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card h-100 border-warning">
+      <div class="card-body text-center">
+        <h5 class="card-title">&#128100; Manage Users</h5>
+        <p class="card-text text-muted">View, suspend, ban, or delete user accounts.</p>
+        <%= link_to "Open User Manager", users_path, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 border-warning">
+      <div class="card-body text-center">
+        <h5 class="card-title">&#127991; Manage Categories</h5>
+        <p class="card-text text-muted">Add, edit or remove quote categories.</p>
+        <%= link_to "Open Categories", categories_path, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card h-100 border-warning">
+      <div class="card-body text-center">
+        <h5 class="card-title">&#128218; Thinkers</h5>
+        <p class="card-text text-muted">Maintain the database of authors and thinkers.</p>
+        <%= link_to "Open Thinkers", authors_path, class: "btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+</div>

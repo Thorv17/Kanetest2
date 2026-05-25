@@ -1,0 +1,50 @@
+/*
+ * ThoughtVault — application stylesheet
+ * Green/teal theme, different from the dark theme used in the reference project.
+ */
+
+/* Ensure the body fills the viewport height for a clean footer layout */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+}
+
+/* Blockquote styling — larger, italic, with left accent bar */
+blockquote.blockquote {
+  border-left: 4px solid #198754;
+  padding-left: 1rem;
+}
+
+blockquote.blockquote p {
+  font-size: 1.05rem;
+  color: #333;
+}
+
+/* Card hover lift effect */
+.card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Bootstrap success-subtle badge support for older Bootstrap */
+.bg-success-subtle {
+  background-color: #d1e7dd !important;
+}
+
+/* Navigation active state */
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Footer styling */
+footer {
+  background-color: #f8f9fa;
+}

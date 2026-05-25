@@ -1,0 +1,35 @@
+<% content_for :title, "Manage Users — ThoughtVault" %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>&#128100; Manage Users</h2>
+</div>
+
+<% if @users.empty? %>
+  <p class="text-muted">No users registered yet.</p>
+<% else %>
+  <div id="users">
+    <% @users.each do |user| %>
+      <div class="card border-0 shadow-sm mb-3">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              <p class="mb-1"><strong>Name:</strong> <%= user.fname %> <%= user.lname %></p>
+              <p class="mb-1"><strong>Email:</strong> <%= user.email %></p>
+              <p class="mb-0">
+                <strong>Status:</strong>
+                <% badge_class = user.status == "Active" ? "bg-success" : (user.status == "Suspended" ? "bg-warning text-dark" : "bg-danger") %>
+                <span class="badge <%= badge_class %>"><%= user.status %></span>
+                <% if user.is_admin? %>
+                  <span class="badge bg-primary ms-1">Admin</span>
+                <% end %>
+              </p>
+            </div>
+            <div class="col-auto">
+              <%= link_to "Manage", user_path(user), class: "btn btn-outline-warning btn-sm" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

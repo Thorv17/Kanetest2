@@ -1,0 +1,41 @@
+<%# Partial showing all details of a single quote — uses blockquote + metadata layout %>
+<div id="<%= dom_id quote %>">
+  <blockquote class="blockquote mb-2">
+    <p class="fst-italic fs-5">&ldquo;<%= quote.content %>&rdquo;</p>
+  </blockquote>
+
+  <% if quote.author.present? %>
+    <p class="mb-1">
+      <strong>Thinker:</strong>
+      <%= quote.author.fname %> <%= quote.author.lname %>
+      <% if quote.author.birth_yr.present? %>
+        (<%= quote.author.birth_yr %>&ndash;<%= quote.author.death_yr.present? ? quote.author.death_yr : "present" %>)
+      <% end %>
+    </p>
+    <% if quote.author.bio.present? %>
+      <p class="mb-1 text-muted small"><strong>About:</strong> <%= quote.author.bio %></p>
+    <% end %>
+  <% end %>
+
+  <% if quote.pub_year.present? %>
+    <p class="mb-1"><strong>Publication Year:</strong> <%= quote.pub_year %></p>
+  <% end %>
+
+  <p class="mb-1">
+    <strong>Collected by:</strong> <%= quote.user.fname %>
+  </p>
+
+  <% if quote.note.present? %>
+    <p class="mb-1"><strong>Collector&rsquo;s Note:</strong> <%= quote.note %></p>
+  <% end %>
+
+  <%# Categories listed as badges — different visual treatment from friend's bullet list %>
+  <% if quote.quote_tags.loaded? ? quote.quote_tags.any? : quote.categories.any? %>
+    <p class="mb-1">
+      <strong>Categories:</strong>
+      <% quote.categories.each do |cat| %>
+        <span class="badge bg-success-subtle text-success border border-success me-1"><%= cat.name %></span>
+      <% end %>
+    </p>
+  <% end %>
+</div>

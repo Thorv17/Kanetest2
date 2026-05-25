@@ -1,0 +1,45 @@
+<%# Form partial for creating/editing an Author (called "Thinker" in the UI) %>
+<%= form_with(model: author) do |form| %>
+
+  <% if author.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>Please fix the following:</strong>
+      <ul class="mb-0 mt-1">
+        <% author.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">First Name <span class="text-danger">*</span></label>
+    <%= form.text_field :fname, class: "form-control", placeholder: "e.g. Immanuel" %>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Last Name</label>
+    <%= form.text_field :lname, class: "form-control", placeholder: "e.g. Kant" %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label fw-semibold">Birth Year</label>
+      <%= form.text_field :birth_yr, class: "form-control", placeholder: "e.g. 1724 or 428 BCE" %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label fw-semibold">Death Year</label>
+      <%= form.text_field :death_yr, class: "form-control", placeholder: "e.g. 1804 (leave blank if living)" %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label fw-semibold">Short Biography</label>
+    <%= form.text_area :bio, class: "form-control", rows: 3,
+        placeholder: "Brief background about this thinker (optional)" %>
+  </div>
+
+  <div class="d-grid">
+    <%= form.submit local_assigns[:btn_label] || "Save Thinker", class: "btn btn-success btn-lg" %>
+  </div>
+<% end %>

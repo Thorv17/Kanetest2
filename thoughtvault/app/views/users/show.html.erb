@@ -1,0 +1,21 @@
+<% content_for :title, "User Profile — ThoughtVault" %>
+
+<div class="card shadow-sm border-0 mt-3" style="max-width:600px;">
+  <div class="card-header bg-success text-white py-3">
+    <h4 class="mb-0">&#128100; User Profile</h4>
+  </div>
+  <div class="card-body p-4">
+    <%= render @user %>
+
+    <hr>
+    <div class="d-flex gap-2">
+      <%= link_to "Edit Account", edit_user_path(@user), class: "btn btn-outline-success" %>
+      <% if admin_user? %>
+        <%= link_to "All Users", users_path, class: "btn btn-outline-secondary" %>
+        <%= button_to "Delete Account", @user, method: :delete,
+            class: "btn btn-danger",
+            data: { turbo_confirm: "Permanently delete this account? This cannot be undone." } %>
+      <% end %>
+    </div>
+  </div>
+</div>

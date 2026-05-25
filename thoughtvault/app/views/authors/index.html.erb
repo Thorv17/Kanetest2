@@ -1,0 +1,34 @@
+<% content_for :title, "Thinkers — ThoughtVault" %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2>&#128218; Thinkers</h2>
+  <%= link_to "&#43; Add New Thinker".html_safe, new_author_path, class: "btn btn-success" %>
+</div>
+
+<% if @authors.empty? %>
+  <p class="text-muted">No thinkers added yet.</p>
+<% else %>
+  <div id="authors" class="row row-cols-1 row-cols-md-2 g-3">
+    <% @authors.each do |author| %>
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><%= author.fname %> <%= author.lname %></h5>
+            <% if author.birth_yr.present? %>
+              <p class="text-muted small mb-1">
+                <%= author.birth_yr %>&ndash;<%= author.death_yr.present? ? author.death_yr : "present" %>
+              </p>
+            <% end %>
+            <% if author.bio.present? %>
+              <p class="card-text small"><%= truncate(author.bio, length: 100) %></p>
+            <% end %>
+            <div class="mt-2 d-flex gap-2">
+              <%= link_to "View", author_path(author), class: "btn btn-sm btn-outline-success" %>
+              <%= link_to "Edit", edit_author_path(author), class: "btn btn-sm btn-outline-secondary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

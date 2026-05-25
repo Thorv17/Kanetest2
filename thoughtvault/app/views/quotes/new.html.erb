@@ -1,0 +1,12 @@
+<% content_for :title, "Add Quote — ThoughtVault" %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>&#43; Add a New Quote</h2>
+  <%= link_to "&larr; Back to My Quotes".html_safe, my_quotes_path, class: "btn btn-outline-secondary btn-sm" %>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body p-4">
+    <%= render "form", quote: @quote, btn_label: "Save to Vault" %>
+  </div>
+</div>

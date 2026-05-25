@@ -1,0 +1,43 @@
+<% content_for :title, "ThoughtVault — Collect Wisdom" %>
+
+<!-- Hero banner — teal/green theme, different layout from friend's project -->
+<div class="p-4 mb-4 bg-success bg-opacity-10 rounded-3 border border-success">
+  <h1 class="display-5 fw-bold text-success">Welcome to ThoughtVault</h1>
+  <p class="fs-5 text-muted">Discover and collect timeless wisdom from great thinkers throughout history.</p>
+  <% unless logged_in? %>
+    <%= link_to "Create a Free Account", new_user_path, class: "btn btn-success me-2" %>
+    <%= link_to "Sign In", login_path, class: "btn btn-outline-success" %>
+  <% end %>
+</div>
+
+<!-- 10 most recently added public quotes, ordered newest first -->
+<h3 class="mb-3">&#128221; Recently Added Quotes</h3>
+<hr>
+
+<% if @recent_quotes.empty? %>
+  <p class="text-muted">No quotes have been published yet. Be the first to contribute!</p>
+<% else %>
+  <% @recent_quotes.each do |quote| %>
+    <article class="card border-0 shadow-sm mb-3">
+      <div class="card-body">
+        <!-- Blockquote formatting — visually different from friend's plain card text -->
+        <blockquote class="blockquote mb-1">
+          <p class="fst-italic">&ldquo;<%= quote.content %>&rdquo;</p>
+          <footer class="blockquote-footer">
+            <% if quote.author.present? %>
+              <%= quote.author.fname %> <%= quote.author.lname %>
+              <% if quote.author.birth_yr.present? %>
+                (<%= quote.author.birth_yr %>&ndash;<%= quote.author.death_yr.present? ? quote.author.death_yr : "present" %>)
+              <% end %>
+            <% else %>
+              Unknown Author
+            <% end %>
+          </footer>
+        </blockquote>
+        <div class="mt-2">
+          <%= link_to "Read full details &rarr;".html_safe, quote_path(quote), class: "btn btn-sm btn-outline-success" %>
+        </div>
+      </div>
+    </article>
+  <% end %>
+<% end %>
